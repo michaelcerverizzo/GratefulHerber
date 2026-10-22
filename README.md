@@ -1,7 +1,13 @@
 # Grateful Herber
 
 A free, source-visible herbalism journal and Alchemy planner for WoW Classic Era,
-with a Grateful Dead inspired purple and gold theme. Version **0.2.0**.
+with a Grateful Dead inspired purple and gold theme. Version **0.2.1**.
+
+<img src="docs/images/terrapin-alchemist.png" width="280" alt="Original terrapin alchemist mascot with lavender, a golden potion, and botanical curls">
+
+The original AI-generated terrapin alchemist appears in the journal header and
+minimap button. Purple and gold botanical details give the addon its own visual
+identity. This is fan-made artwork and does not imply band endorsement.
 
 ![Concept preview](docs/images/grateful-herber-concept.png)
 
@@ -39,7 +45,7 @@ still required before calling this a tested release.
 | Packing List | Missing ingredients, low vial stock, and low general bag space reminders. |
 | Ticket Price | Manual unit prices in copper, ingredient costs, minimum-output value, and gross margins per craft. No Auction House scanning or transactions. |
 | Saved Setlists | Independent named crafting plans. Save a copy or start an empty plan, then switch between them. |
-| Stage Lights | Five pages, item icons, larger text, shortage labels, remembered window placement, and a minimap leaf button. |
+| Stage Lights | Five pages, an original terrapin alchemist mascot, botanical accents, item icons, larger text, shortage labels, remembered window placement, and a matching minimap button. |
 | Sound flair | Optional WoW chime or three bundled original musical cues; authorized local replacement clips are supported. Off by default. |
 
 The shopping list combines shared reagents from every recipe in the active plan,

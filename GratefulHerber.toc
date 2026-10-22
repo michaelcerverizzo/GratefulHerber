@@ -2,7 +2,7 @@
 ## Title: Grateful Herber
 ## Notes: A long, strange gathering trip: herbalism journal and alchemy shopping list.
 ## Author: GratefulHerber contributors
-## Version: 0.2.0
+## Version: 0.2.1
 ## SavedVariables: GratefulHerberAccount
 ## SavedVariablesPerCharacter: GratefulHerberDB
 

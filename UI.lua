@@ -5,6 +5,7 @@ local page = "Journal"
 local tabs = {}
 local gold, purple, muted = "|cffffd780", "|cffc9a0ef", "|cffb0a999"
 local pages = {"Journal", "Alchemy", "Stash", "Routes", "Settings"}
+local mascotPath = "Interface\\AddOns\\GratefulHerber\\Media\\terrapin-alchemist.tga"
 
 local function SortedValues(values, compare)
     local result = {}
@@ -204,7 +205,7 @@ end
 local function Settings(lines)
     local settings = ns.db.settings
     Section(lines, "STAGE LIGHTS")
-    lines[#lines + 1] = "Purple and gold journal with built-in item artwork. Shortages use words as well as color."
+    lines[#lines + 1] = "Purple and gold journal with an original terrapin alchemist and botanical artwork. Shortages use words as well as color."
     lines[#lines + 1] = string.format("Text size: %d  ·  Change with: font 11 through font 20", settings.fontSize or 13)
     Section(lines, "OPTIONAL SOUND FLAIR")
     lines[#lines + 1] = "Current sound mode: " .. (settings.sound or "off")
@@ -277,7 +278,7 @@ end
 function ns.CreateUI()
     window = CreateFrame("Frame", "GratefulHerberFrame", UIParent, "BasicFrameTemplateWithInset")
     ns.panel = window
-    window:SetSize(760, 600)
+    window:SetSize(760, 680)
     local position = ns.db.window
     if position and position.point then
         window:SetPoint(position.point, UIParent, position.relativePoint or position.point, position.x or 0, position.y or 0)
@@ -305,16 +306,39 @@ function ns.CreateUI()
         background:SetBackdropBorderColor(0.55, 0.36, 0.65, 1)
     end
     background:SetFrameLevel(window:GetFrameLevel())
+    local mascot = CreateFrame("Frame", nil, window)
+    mascot:SetSize(84, 84)
+    mascot:SetPoint("TOPLEFT", 22, -32)
+    mascot:EnableMouse(true)
+    local mascotArt = mascot:CreateTexture(nil, "OVERLAY")
+    mascotArt:SetAllPoints()
+    mascotArt:SetTexture(mascotPath)
+    mascot:SetScript("OnEnter", function(self)
+        Tooltip(self, "The Terrapin Alchemist", "Your original botanical companion for the gathering trail.")
+    end)
+    mascot:SetScript("OnLeave", function() if GameTooltip then GameTooltip:Hide() end end)
     subtitle = window:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    subtitle:SetPoint("TOPLEFT", 20, -35)
+    subtitle:SetPoint("TOPLEFT", 122, -49)
+    subtitle:SetWidth(608)
+    subtitle:SetJustifyH("LEFT")
     subtitle:SetTextColor(0.79, 0.63, 0.94)
+    local flavor = window:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    flavor:SetPoint("TOPLEFT", 122, -75)
+    flavor:SetWidth(608)
+    flavor:SetJustifyH("LEFT")
+    flavor:SetText("Herbs in your satchel. A little magic on the road.")
+    flavor:SetTextColor(0.88, 0.79, 0.57)
+    local divider = window:CreateTexture(nil, "ARTWORK")
+    divider:SetPoint("TOPLEFT", 20, -119)
+    divider:SetSize(720, 1)
+    divider:SetColorTexture(0.55, 0.36, 0.65, 0.65)
     for i, name in ipairs(pages) do
         local button = Button(window, name, 138, function() ns.SetPage(name) end)
-        button:SetPoint("TOPLEFT", 20 + (i - 1) * 143, -57)
+        button:SetPoint("TOPLEFT", 20 + (i - 1) * 143, -126)
         tabs[name] = button
     end
     local scanButton = Button(window, "Scan recipes", 130, function() ns.Command("scan") end)
-    scanButton:SetPoint("TOPLEFT", 20, -88)
+    scanButton:SetPoint("TOPLEFT", 20, -157)
     local addButton = Button(window, "Plan selected x5", 140, function() ns.Command("add 5") end)
     addButton:SetPoint("LEFT", scanButton, "RIGHT", 8, 0)
     local stashButton = Button(window, "Toggle stash counts", 155, function()
@@ -324,7 +348,7 @@ function ns.CreateUI()
     local soundButton = Button(window, "Test sound", 110, function() ns.Command("sound test") end)
     soundButton:SetPoint("LEFT", stashButton, "RIGHT", 8, 0)
     scroll = CreateFrame("ScrollFrame", nil, window, "UIPanelScrollFrameTemplate")
-    scroll:SetPoint("TOPLEFT", 24, -123)
+    scroll:SetPoint("TOPLEFT", 24, -192)
     scroll:SetPoint("BOTTOMRIGHT", -38, 67)
     content = CreateFrame("Frame", nil, scroll)
     content:SetSize(682, 1)
@@ -364,7 +388,7 @@ function ns.CreateUI()
         minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -7, 7)
         minimapButton:SetFrameStrata("MEDIUM")
         local texture = minimapButton:CreateTexture(nil, "BACKGROUND")
-        texture:SetTexture("Interface\\Icons\\INV_Misc_Herb_01")
+        texture:SetTexture(mascotPath)
         texture:SetPoint("TOPLEFT", 5, -5)
         texture:SetPoint("BOTTOMRIGHT", -5, 5)
         local border = minimapButton:CreateTexture(nil, "OVERLAY")
