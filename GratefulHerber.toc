@@ -1,0 +1,14 @@
+## Interface: 11508
+## Title: Grateful Herber
+## Notes: A long, strange gathering trip: herbalism journal and alchemy shopping list.
+## Author: GratefulHerber contributors
+## Version: 0.2.0
+## SavedVariables: GratefulHerberAccount
+## SavedVariablesPerCharacter: GratefulHerberDB
+
+Data.lua
+Core.lua
+Professions.lua
+Journal.lua
+UI.lua
+Main.lua
